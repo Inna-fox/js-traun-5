@@ -24,8 +24,8 @@ function sumArray(array) {
   // Додаємо кожен елемент до загальної суми
   // Повертаємо суму
   let sum = 0
-  for (let index of array) {
-    sum += index;
+  for (let index in array) {
+    sum += array[index];
   }
   return sum;
 }
@@ -40,7 +40,7 @@ function multiplyArray(array) {
   // Проходимося по всіх значеннях масиву
   // Множимо кожен елемент на загальний добуток
   // Повертаємо добуток
-  let a = 0;
+  let a = 1;
   for (let index of array) {
     a *= index;
   }
@@ -123,6 +123,11 @@ function concatenateStrings(array, subString) {
   // Виводимо результат
 }
 
+//варіант рішення від підтримки function concatenateStrings(array, subString) {
+  // Використовуємо метод toString() для перетворення масиву в рядок let str = array.toString();
+  //Перевіряємо чи містить рядок підрядок let result = str.includes(subString);
+  // Виводимо результат console.log(result);}
+
 console.log("Завдання 8 ====================================");
 concatenateStrings([1, "two", 3, "four", 5], "two"); // Виведе true
 
@@ -132,8 +137,8 @@ concatenateStrings([1, "two", 3, "four", 5], "two"); // Виведе true
 function addTenToEach(array) {
   // Ініціалізуємо масив через конструктор з такою же кількістю елементів як в вхідному масиві для зберігання результату
   // Перебираємо масив за допомогою циклу for-in
-  // Додаємо до поточного елемента 10 та додаємо результат в новий масив
-  // Виводимо результат
+  // Додаємо до поточного елемента 10 та додаємо результат в новий масив ( result[index] = array[index] + 10;)
+  // Виводимо результат ( console.log(result);)
   
   for (let index of array) {
     console.log(index+10)
@@ -196,10 +201,8 @@ function multiplyByIndex(arr) {
   // Створюємо пустий масив для зберігання результату
   let a = [];
   // Проходимо через кожен елемент вхідного масиву
-  for (let i of arr) {
-    for (let index in arr) {
-      a = i * index;
-    }
+  for (let i = 0; i < arr.length; i++) {
+    a = [...a, arr[i] * i];
   }
   // Помножуємо число на його індекс і додаємо до масиву результату
   // Повертаємо масив результату
@@ -213,12 +216,12 @@ function replaceNumbers(arr) {
   // Створюємо пустий масив для зберігання результату
   let result = [];
   // Проходимо через кожен елемент вхідного масиву
-  for (let i of arr) {
+  for (let i = 0; i < arr.length; i++) {
     // Перевіряємо, чи число більше за 10
     if (arr[i] > 10) {
-      result = "Greater than 10"; 
-    } else if (arr[i] <= 10) {
-      result = "Less than or equal to 10";
+      result = [...result, "Greater than 10"]; 
+    } else {
+      result = [...result, "Less than or equal to 10"];
     }
   }
   // Якщо число більше за 10, додаємо рядок "Greater than 10" до масиву результату
